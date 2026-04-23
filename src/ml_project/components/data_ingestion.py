@@ -5,6 +5,7 @@ from src.ml_project.exceptions import CustomException
 from src.ml_project.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from src.ml_project.utils import read_sql_data
 
 
 from dataclasses import dataclass
@@ -21,7 +22,8 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Entered the data ingestion method or component")
         try:
-            df=pd.read_csv(os.path.join("src","ml_project","notebook\data\stud.csv"))
+            #df=pd.read_csv(os.path.join("src","ml_project","notebook\data\stud.csv"))
+            df=read_sql_data()
             logging.info("Read the dataset as dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
